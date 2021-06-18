@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
       <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
 </head>
+
 <body>
       <style>
-            * {
-                  box-sizing: border-box 
-            }
-            body{
-                  background: #000;
-                  font-family: "Roboto";
-                  height: 90vh;
-                  padding-top: 200px;
-            }
-            .slider{
+            .slider {
                   width: 90%;
                   max-width: 400px;
                   margin: 0 auto;
                   /* transition: all 300ms; */
             }
-            .slider.is--disabled{
+
+            .slider.is--disabled {
                   pointer-events: none;
             }
-            .slider::before{
+
+            .slider::before {
                   position: absolute;
                   left: 0;
                   top: 0;
@@ -43,7 +38,8 @@
                   z-index: 1;
                   pointer-events: none;
             }
-            .slider::after{
+
+            .slider::after {
                   position: absolute;
                   right: 0;
                   top: 0;
@@ -56,43 +52,48 @@
                   z-index: 1;
                   pointer-events: none;
             }
-            .slider__item{
+
+            .slider__item {
                   display: flex;
                   justify-content: center;
                   margin: 0px 5px;
                   padding-top: 10px;
                   width: 65px;
                   height: 150px;
-                  opacity : .6;
+                  opacity: .6;
                   position: relative;
                   transition: transform 300ms;
                   transform: translateX(-50%);
 
             }
-        
-            .slider.is--active .slider__item{
+
+            .slider.is--active .slider__item {
                   transform: translateX(0%);
             }
-            .slider.is--active .slider__item.slick-current{
+
+            .slider.is--active .slider__item.slick-current {
                   opacity: 1;
             }
-            .slider.is--active .slider__item.slick-current img{
+
+            .slider.is--active .slider__item.slick-current img {
                   width: 65px;
                   height: 65px;
                   transform: translateY(-5px);
             }
-            .slider.is--active .slider__text-container.is--show{
+
+            .slider.is--active .slider__text-container.is--show {
                   opacity: 1;
             }
-            .slider__item img{
+
+            .slider__item img {
                   width: 55px;
                   height: 55px;
                   margin: 0 auto;
                   cursor: pointer;
                   transition: all 200ms;
             }
-            
-            .slider__text-container{
+
+            .slider__text-container {
                   opacity: 0;
                   position: absolute;
                   transform: translateX(-50%);
@@ -106,8 +107,8 @@
                   white-space: nowrap;
                   transition: opacity 400ms;
             }
-          
-            .slider__text-descr{
+
+            .slider__text-descr {
                   font-family: Roboto;
                   font-weight: normal;
 
@@ -115,257 +116,191 @@
       </style>
       <div class="slider ">
             <div class="slider__item">
-                  <img class="slider__avatar" src="1.png"  srcset="">
+                  <img class="slider__avatar" src="1.png" srcset="">
                   <div class="slider__text-container">
                         <div>John Smith! (1)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
 
             </div>
-            <div  class="slider__item" >
-                  <img src="2.png"  srcset="">
+            <div class="slider__item">
+                  <img src="2.png" srcset="">
                   <div class="slider__text-container">
                         <div>Mary Johnson (2)</div>
                         <div class="slider__text-descr">Teacher | University Name</div>
                   </div>
             </div>
-            <div  class="slider__item" >
-                  <img src="3.png"  srcset="">
+            <div class="slider__item">
+                  <img src="3.png" srcset="">
                   <div class="slider__text-container">
                         <div>Colten Mertz (3)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
-            <div  class="slider__item" >
-                  <img src="4.png"  srcset="">
+            <div class="slider__item">
+                  <img src="4.png" srcset="">
                   <div class="slider__text-container">
                         <div>Addison Ondricka (4)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
             <div class="slider__item">
-                  <img class="slider__avatar" src="1.png"  srcset="">
+                  <img class="slider__avatar" src="1.png" srcset="">
                   <div class="slider__text-container">
                         <div>John Smith! (5)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
 
             </div>
-            <div  class="slider__item" >
-                  <img src="2.png"  srcset="">
+            <div class="slider__item">
+                  <img src="2.png" srcset="">
                   <div class="slider__text-container">
                         <div>Mary Johnson (6)</div>
                         <div class="slider__text-descr">Teacher | University Name</div>
                   </div>
             </div>
-            <div  class="slider__item" >
-                  <img src="3.png"  srcset="">
+            <div class="slider__item">
+                  <img src="3.png" srcset="">
                   <div class="slider__text-container">
                         <div>Colten Mertz (7)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
-            <div  class="slider__item" >
-                  <img src="4.png"  srcset="">
+            <div class="slider__item">
+                  <img src="4.png" srcset="">
                   <div class="slider__text-container">
                         <div>Addison Ondricka (8)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
-     
-           
+
+
       </div>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
       <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
       <script>
-            const slick = $('.slider').slick({
-                  variableWidth: true,
-                  infinite: true,
-                  arrows: false,
-                  centerMode: true,
-                  swipeToSlide: true,
-                  speed : 300,
-                  initialSlide : 3,
-                  slideToShow : 5,
-                  adaptiveHeight: true,
-            })
-            const slickObj = slick.slick("getSlick")
-            let middleState = false
-            let prevSlide = 0
-            let beforeActive = 0
-            let diffActive = 0
-            let isDragging = false
-            let isCloned = false
-            $('.slider__item img').on('click', (e)=>{
-                  if(isDragging) return
-                  const target = $(e.target)
-                  const slide = $(e.target).parents('.slider__item')
-                  let index = slide.data("slick-index")
-                  
-                 
-                  if(slide.hasClass("slick-current")){
+            const avatarSlick = (function () {
+                  const init = () => {
+                        const container = $('.slider').slick({
+                              variableWidth: true,
+                              infinite: true,
+                              arrows: false,
+                              centerMode: true,
+                              swipeToSlide: true,
+                              speed: 300,
+                              initialSlide: 3,
+                              slideToShow: 5,
+                              adaptiveHeight: true,
+                              touchThreshold : 20
+                        })
+                        const model = {
+                              prevSlide: 0,
+                              beforeActive: 0,
+                              diffActive: 0,
+                              isDragging: false,
+                              isCloned: false
+
+                        }
                         
-                        if(slick.hasClass("is--active")){
-                              slick.removeClass("is--active")
-                              index = slide.data("slick-index")
-                              if(isCloned){
-                                    if(diffActive >=0){
-                                          console.log('slickPrev');
-                                          slick.slick('slickPrev')
-                                    }else{
-                                          console.log('slickNext');
-                                          slick.slick('slickNext')
+                        const containerController = {
+                              getActiveState : ()=>container.hasClass("is--active")
+                        }
+                        
+                        container.find('.slider__item img').on('click', (e) => {
+                              if (model.isDragging) return
+                              const target = $(e.target)
+                              const slide = $(e.target).parents('.slider__item')
+                              let index = getCurrentSlideIndex()
+                              const isClickOnCurrentSlide = slide.hasClass("slick-current")
+                              const isContainerActive = containerController.getActiveState()
+
+                              if (isClickOnCurrentSlide) {
+                                    if (isContainerActive) {
+                                          container.removeClass("is--active")
+                                          if (model.isCloned) {
+                                                if (model.diffActive >= 0) {
+                                                      console.log('slickPrev');
+                                                      container.slick('slickPrev')
+                                                } else {
+                                                      console.log('slickNext');
+                                                      container.slick('slickNext')
+                                                }
+                                          } else {
+                                                container.slick('slickGoTo', model.beforeActive)
+                                          }
+
+                                    } else {
+                                          container.addClass("is--active")
+                                          changePage()
                                     }
-                              }else{
-                                    slick.slick('slickGoTo',beforeActive)
+                              } else {
+                                    container.addClass("is--active")
+                                    changePage()
                               }
+
+                              model.isCloned = slide.hasClass("slick-cloned")
+                              function getCurrentSlideIndex() {
+                                    return slide.data("slick-index")
+                              }
+                              function changePage() {
+                                    if (index <= -2) {
+                                          container.slick('slickPrev')
+
+                                    } else {
+                                          container.slick('slickGoTo', index)
+                                    }
+                              }
+
+
+                        });
+                        container.on("beforeChange", beforeChange)
+                        container.on("afterChange", afterChange)
+                        container.on('dragstart', setDraggingIsTrue);
+                        $('body').on('mouseup', setDraggingIsFalseAfterClickEvent);
+                        container.on('wheel', horizontalScroll);
+
+                        function beforeChange(_, _, currentSlide, nextSlide) {
+                              model.beforeActive = currentSlide
+                              if (nextSlide !== model.prevSlide) {
+                                    container.find('.slider__text-container').removeClass("is--show")
+                              }
+                        }
+                        function afterChange(_, _, currentSlide) {
+                              model.diffActive = model.prevSlide - currentSlide
+                              if (currentSlide !== model.prevSlide) {
+                                    container.find('.slick-current .slider__text-container').addClass("is--show")
+                                    model.prevSlide = currentSlide
+                              } 
+                            
+                        }
+                        function setDraggingIsTrue() {
+                              model.isDragging = true
                               
-                        }else{
-                              slick.addClass("is--active")
-                              changePage() 
                         }
-                  }else{
-                        slick.addClass("is--active")
-                        changePage() 
-                  }
-                
-                  isCloned = slide.hasClass("slick-cloned")
-
-                  function changePage() {
-                        if (index <= -2) {
-                              slick.slick('slickPrev')
+                        function setDraggingIsFalseAfterClickEvent() {
+                              setTimeout(() => {
+                                    model.isDragging = false
+                              }, 0);
                               
-                        }else{
-                              slick.slick('slickGoTo',index)
                         }
+                        function horizontalScroll(e) {
+                              e.preventDefault();
+                              if (e.originalEvent.deltaY < 0) {
+                                    container.slick('slickNext');
+                              } else {
+                                    container.slick('slickPrev');
+                              }
+
                         }
-                
-                  
-            });
-            slick.on("beforeChange" , function(_, _, currentSlide,nextSlide){
-                  // slick.addClass('is--disabled')
-                  beforeActive = currentSlide
-                  if(nextSlide !== prevSlide){
-                        slick.find('.slider__text-container').removeClass("is--show")
                   }
-                  // else{
-                        // slick.slick('slickGoTo',currentSlide)
-                  // }
 
-                  // if ((currentSlide > nextSlide && (nextSlide !== 0 || currentSlide === 1)) || (currentSlide === 0 && nextSlide === slick.slideCount - 1)) {
-                  // }
-                  // else {
-                  // }
-                                    
-            })
-            slick.on("afterChange" , function(_, _,currentSlide){
-                  // slick.removeClass('is--disabled')
-                  diffActive =  prevSlide - currentSlide
-                  if(currentSlide !== prevSlide){
-                        slick.find('.slick-current .slider__text-container').addClass("is--show")
-                        prevSlide = currentSlide
+                  return {
+                        init
                   }
-                  else{
-                        slick.find('.slick-current .slider__text-container').toggleClass("is--show")
-                  }
-                 
-
-                  
-            })
-            slick.on('dragstart', function(){
-                  isDragging = true
-            });
-            slick.on('mouseup', function(){
-                  setTimeout(() => {
-                        isDragging = false
-                        // slick.find('.slick-current .slider__text-container').addClass("is--show")
-                  }, 1);
-            });
-            slick.on('wheel',(e)=>{
-                  e.preventDefault();
-                  if (e.originalEvent.deltaY < 0) {
-                        slick.slick('slickNext');
-                  } else {
-                        slick.slick('slickPrev');
-                  }
-            });
+            })()
+            avatarSlick.init()
       </script>
-  <!-- <script>
-      let slick = $('.slider').slick({
-            variableWidth: true,
-            infinite: true,
-            arrows: false,
-            centerMode: false,
-            swipeToSlide: true,
-            speed : 300,
-            adaptiveHeight: true,
-      })
-      let middleState = false
-      let prevSlide = 0
-      let isDragging = false
-
-     
-      $('.slider__item').on('click', (e)=>{
-            if(isDragging) return
-            const target = $(e.target)
-            
-            if(target.parents('.slider__item').hasClass("slick-current")){
-                  // slick.slick('slickSetOption', 'centerMode', true);
-                  middleState = !middleState
-                  reInitSlick()
-                  slick.toggleClass("is--active")
-
-            }else{
-                  reInitSlick(true)
-                  slick.addClass("is--active")
-
-            }
-            const slide = $(e.target).parents('.slider__item')
-            let index = slide.data("slick-index")
-            if (index <= -2) {
-                   slick.slick('slickPrev')
-            }
-            // slick.addClass("is--active")
-            slick.slick('slickGoTo',index)
-            
-      });
-      slick.on("beforeChange" , function(_, _, _,nextSlide){
-            if(nextSlide !== prevSlide){
-                  slick.find('.slider__text-container').removeClass("is--show")
-            }
-            
-      })
-      slick.on("afterChange" , function(_, _,currentSlide){
-            if(currentSlide !== prevSlide){
-                  slick.find('.slick-current .slider__text-container').addClass("is--show")
-                  prevSlide = currentSlide
-            }
-            else{
-                  slick.find('.slick-current .slider__text-container').toggleClass("is--show")
-            }
-            
-      })
-      slick.on('dragstart', function(){
-            isDragging = true
-      });
-      slick.on('mouseup', function(){
-            setTimeout(() => {
-                  isDragging = false
-                  // slick.find('.slick-current .slider__text-container').addClass("is--show")
-            }, 1);
-      });
-      function reInitSlick(state) {
-            slick = slick.slick('slickSetOption', {
-                        variableWidth: true,
-                        infinite: true,
-                        arrows: false,
-                        centerMode: state || middleState,
-                        swipeToSlide: true,
-                        speed : 300,
-                        adaptiveHeight: true,
-                  },true);
-      }
-      
-</script> -->
 </body>
+
 </html>
