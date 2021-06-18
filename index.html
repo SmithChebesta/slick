@@ -23,9 +23,12 @@
             }
             .slider{
                   width: 90%;
-                  max-width: 400px;
+                  max-width: 600px;
                   margin: 0 auto;
                   /* transition: all 300ms; */
+            }
+            .slider.is--disabled{
+                  pointer-events: none;
             }
             .slider::before{
                   position: absolute;
@@ -86,7 +89,7 @@
                   height: 55px;
                   margin: 0 auto;
                   cursor: pointer;
-                  transition: all 100ms;
+                  transition: all 200ms;
             }
             
             .slider__text-container{
@@ -101,7 +104,7 @@
                   line-height: 22px;
                   text-align: center;
                   white-space: nowrap;
-                  transition: opacity 550ms;
+                  transition: opacity 400ms;
             }
           
             .slider__text-descr{
@@ -114,7 +117,7 @@
             <div class="slider__item">
                   <img class="slider__avatar" src="1.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>John Smith!</div>
+                        <div>John Smith! (1)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
 
@@ -122,28 +125,28 @@
             <div  class="slider__item" >
                   <img src="2.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>Mary Johnson</div>
+                        <div>Mary Johnson (2)</div>
                         <div class="slider__text-descr">Teacher | University Name</div>
                   </div>
             </div>
             <div  class="slider__item" >
                   <img src="3.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>Colten Mertz</div>
+                        <div>Colten Mertz (3)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
             <div  class="slider__item" >
                   <img src="4.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>Addison Ondricka</div>
+                        <div>Addison Ondricka (4)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
             <div class="slider__item">
                   <img class="slider__avatar" src="1.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>John Smith!</div>
+                        <div>John Smith! (5)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
 
@@ -151,21 +154,21 @@
             <div  class="slider__item" >
                   <img src="2.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>Mary Johnson</div>
+                        <div>Mary Johnson (6)</div>
                         <div class="slider__text-descr">Teacher | University Name</div>
                   </div>
             </div>
             <div  class="slider__item" >
                   <img src="3.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>Colten Mertz</div>
+                        <div>Colten Mertz (7)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
             <div  class="slider__item" >
                   <img src="4.png"  srcset="">
                   <div class="slider__text-container">
-                        <div>Addison Ondricka</div>
+                        <div>Addison Ondricka (8)</div>
                         <div class="slider__text-descr">Photographer | University Name</div>
                   </div>
             </div>
@@ -177,69 +180,86 @@
       <script>
             const slick = $('.slider').slick({
                   variableWidth: true,
-                  infinite: false,
+                  infinite: true,
                   arrows: false,
                   centerMode: true,
                   swipeToSlide: true,
-                  speed : 300,
+                  speed : 400,
+                  initialSlide : 3,
                   adaptiveHeight: true,
             })
+            const slickObj = slick.slick("getSlick")
             let middleState = false
             let prevSlide = 0
             let beforeActive = 0
+            let diffActive = 0
             let isDragging = false
+            let isCloned = false
             $('.slider__item img').on('click', (e)=>{
                   if(isDragging) return
                   const target = $(e.target)
                   const slide = $(e.target).parents('.slider__item')
                   let index = slide.data("slick-index")
-
-                  if(target.parents('.slider__item').hasClass("slick-current")){
+                  
+                 
+                  if(slide.hasClass("slick-current")){
+                        
                         if(slick.hasClass("is--active")){
                               slick.removeClass("is--active")
-                              debugger
-                              changePage(beforeActive)
-
+                              index = slide.data("slick-index")
+                              if(isCloned){
+                                    if(diffActive >=0){
+                                          console.log('slickPrev');
+                                          slick.slick('slickPrev')
+                                    }else{
+                                          console.log('slickNext');
+                                          slick.slick('slickNext')
+                                    }
+                              }else{
+                                    slick.slick('slickGoTo',beforeActive)
+                              }
                               
                         }else{
                               slick.addClass("is--active")
-                              changePage(index) 
+                              changePage() 
                         }
                   }else{
                         slick.addClass("is--active")
-                        changePage(index) 
+                        changePage() 
                   }
                 
-                 
+                  isCloned = slide.hasClass("slick-cloned")
 
-                  function changePage(index) {
+                  function changePage() {
                         if (index <= -2) {
                               slick.slick('slickPrev')
-                        }
+                              
+                        }else{
                               slick.slick('slickGoTo',index)
+                        }
                         }
                 
                   
             });
             slick.on("beforeChange" , function(_, _, currentSlide,nextSlide){
+                  slick.addClass('is--disabled')
                   beforeActive = currentSlide
-                  
                   if(nextSlide !== prevSlide){
                         slick.find('.slider__text-container').removeClass("is--show")
-                  }else{
-                        // console.log('hi');
-                        // slick.slick('slickGoTo',currentSlide)
                   }
+                  // else{
+                        // slick.slick('slickGoTo',currentSlide)
+                  // }
 
                   // if ((currentSlide > nextSlide && (nextSlide !== 0 || currentSlide === 1)) || (currentSlide === 0 && nextSlide === slick.slideCount - 1)) {
-                  //       console.log('previous');
                   // }
                   // else {
-                  //       console.log('next');
                   // }
                                     
             })
             slick.on("afterChange" , function(_, _,currentSlide){
+                  slick.removeClass('is--disabled')
+                  diffActive =  prevSlide - currentSlide
                   if(currentSlide !== prevSlide){
                         slick.find('.slick-current .slider__text-container').addClass("is--show")
                         prevSlide = currentSlide
@@ -247,6 +267,8 @@
                   else{
                         slick.find('.slick-current .slider__text-container').toggleClass("is--show")
                   }
+                 
+
                   
             })
             slick.on('dragstart', function(){
@@ -279,7 +301,6 @@
             const target = $(e.target)
             
             if(target.parents('.slider__item').hasClass("slick-current")){
-                  console.log('a');
                   // slick.slick('slickSetOption', 'centerMode', true);
                   middleState = !middleState
                   reInitSlick()
@@ -320,7 +341,6 @@
       });
       slick.on('mouseup', function(){
             setTimeout(() => {
-                  console.log('mouseup');
                   isDragging = false
                   // slick.find('.slick-current .slider__text-container').addClass("is--show")
             }, 1);
