@@ -18,7 +18,7 @@
             body{
                   background: #000;
                   font-family: "Roboto";
-                  height: 100vh;
+                  height: 90vh;
                   padding-top: 200px;
             }
             .slider{
@@ -184,8 +184,9 @@
                   arrows: false,
                   centerMode: true,
                   swipeToSlide: true,
-                  speed : 400,
+                  speed : 300,
                   initialSlide : 3,
+                  slideToShow : 5,
                   adaptiveHeight: true,
             })
             const slickObj = slick.slick("getSlick")
@@ -242,7 +243,7 @@
                   
             });
             slick.on("beforeChange" , function(_, _, currentSlide,nextSlide){
-                  slick.addClass('is--disabled')
+                  // slick.addClass('is--disabled')
                   beforeActive = currentSlide
                   if(nextSlide !== prevSlide){
                         slick.find('.slider__text-container').removeClass("is--show")
@@ -258,7 +259,7 @@
                                     
             })
             slick.on("afterChange" , function(_, _,currentSlide){
-                  slick.removeClass('is--disabled')
+                  // slick.removeClass('is--disabled')
                   diffActive =  prevSlide - currentSlide
                   if(currentSlide !== prevSlide){
                         slick.find('.slick-current .slider__text-container').addClass("is--show")
@@ -279,6 +280,14 @@
                         isDragging = false
                         // slick.find('.slick-current .slider__text-container').addClass("is--show")
                   }, 1);
+            });
+            slick.on('wheel',(e)=>{
+                  e.preventDefault();
+                  if (e.originalEvent.deltaY < 0) {
+                        slick.slick('slickNext');
+                  } else {
+                        slick.slick('slickPrev');
+                  }
             });
       </script>
   <!-- <script>
