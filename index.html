@@ -177,7 +177,7 @@
       <script>
             const slick = $('.slider').slick({
                   variableWidth: true,
-                  infinite: true,
+                  infinite: false,
                   arrows: false,
                   centerMode: true,
                   swipeToSlide: true,
@@ -198,26 +198,26 @@
                         if(slick.hasClass("is--active")){
                               slick.removeClass("is--active")
                               debugger
-                              slick.slick('slickGoTo',beforeActive)
+                              changePage(beforeActive)
 
                               
                         }else{
                               slick.addClass("is--active")
-                              changePage() 
+                              changePage(index) 
                         }
                   }else{
                         slick.addClass("is--active")
-                        changePage() 
+                        changePage(index) 
                   }
                 
                  
 
-                  function changePage() {
+                  function changePage(index) {
                         if (index <= -2) {
-                         slick.slick('slickPrev')
-                  }
-                  slick.slick('slickGoTo',index)
-                  }
+                              slick.slick('slickPrev')
+                        }
+                              slick.slick('slickGoTo',index)
+                        }
                 
                   
             });
