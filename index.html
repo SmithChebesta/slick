@@ -63,7 +63,7 @@
                   opacity : .6;
                   position: relative;
                   transition: transform 300ms;
-                  transform: translateX(-150px);
+                  transform: translateX(-50%);
 
             }
         
@@ -186,30 +186,58 @@
             })
             let middleState = false
             let prevSlide = 0
+            let beforeActive = 0
             let isDragging = false
-            $('.slider__item').on('click', (e)=>{
+            $('.slider__item img').on('click', (e)=>{
                   if(isDragging) return
                   const target = $(e.target)
-                  if(target.parents('.slider__item').hasClass("slick-current")){
-                        slick.toggleClass("is--active")
-                  }else{
-                        slick.addClass("is--active")
-
-                  }
                   const slide = $(e.target).parents('.slider__item')
                   let index = slide.data("slick-index")
-                  if (index <= -2) {
+
+                  if(target.parents('.slider__item').hasClass("slick-current")){
+                        if(slick.hasClass("is--active")){
+                              slick.removeClass("is--active")
+                              debugger
+                              slick.slick('slickGoTo',beforeActive)
+
+                              
+                        }else{
+                              slick.addClass("is--active")
+                              changePage() 
+                        }
+                  }else{
+                        slick.addClass("is--active")
+                        changePage() 
+                  }
+                
+                 
+
+                  function changePage() {
+                        if (index <= -2) {
                          slick.slick('slickPrev')
                   }
-                  // slick.addClass("is--active")
                   slick.slick('slickGoTo',index)
+                  }
+                
                   
             });
-            slick.on("beforeChange" , function(_, _, _,nextSlide){
+            slick.on("beforeChange" , function(_, _, currentSlide,nextSlide){
+                  beforeActive = currentSlide
+                  
                   if(nextSlide !== prevSlide){
                         slick.find('.slider__text-container').removeClass("is--show")
+                  }else{
+                        // console.log('hi');
+                        // slick.slick('slickGoTo',currentSlide)
                   }
-                  
+
+                  // if ((currentSlide > nextSlide && (nextSlide !== 0 || currentSlide === 1)) || (currentSlide === 0 && nextSlide === slick.slideCount - 1)) {
+                  //       console.log('previous');
+                  // }
+                  // else {
+                  //       console.log('next');
+                  // }
+                                    
             })
             slick.on("afterChange" , function(_, _,currentSlide){
                   if(currentSlide !== prevSlide){
@@ -226,7 +254,6 @@
             });
             slick.on('mouseup', function(){
                   setTimeout(() => {
-                        console.log('mouseup');
                         isDragging = false
                         // slick.find('.slick-current .slider__text-container').addClass("is--show")
                   }, 1);
