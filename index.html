@@ -19,6 +19,7 @@
                   background: #000;
                   font-family: "Roboto";
                   height: 100vh;
+                  padding-top: 200px;
             }
             .slider{
                   width: 90%;
@@ -55,21 +56,36 @@
                   display: flex;
                   justify-content: center;
                   margin: 0px 5px;
-                  width: 55px;
-                  height: 100px;
+                  padding-top: 10px;
+                  width: 65px;
+                  height: 150px;
                   opacity : .6;
                   position: relative;
+                  transition: transform 300ms;
+                  transform: translateX(-50%);
+
             }
-            .slider__item.slick-current{
+        
+            .slider.is--active .slider__item{
+                  transform: translateX(0%);
+            }
+            .slider.is--active .slider__item.slick-current{
+                  opacity: 1;
+            }
+            .slider.is--active .slider__item.slick-current img{
+                  width: 65px;
+                  height: 65px;
+                  transform: translateY(-5px);
+            }
+            .slider.is--active .slider__text-container.is--show{
                   opacity: 1;
             }
             .slider__item img{
-                  width: 100%;
-                  max-height: 55px;
-
+                  width: 55px;
+                  height: 55px;
                   margin: 0 auto;
                   cursor: pointer;
-
+                  transition: all 100ms;
             }
             
             .slider__text-container{
@@ -77,7 +93,7 @@
                   position: absolute;
                   transform: translateX(-50%);
                   left: 50%;
-                  top: 60px;
+                  top: 80px;
                   color: white;
                   font-weight: bold;
                   font-size: 14px;
@@ -86,16 +102,14 @@
                   white-space: nowrap;
                   transition: opacity 550ms;
             }
-            .slider__text-container.is--show{
-                  opacity: 1;
-            }
+          
             .slider__text-descr{
                   font-family: Roboto;
                   font-weight: normal;
 
             }
       </style>
-      <div class="slider">
+      <div class="slider ">
             <div class="slider__item">
                   <img class="slider__avatar" src="1.png"  srcset="">
                   <div class="slider__text-container">
@@ -169,17 +183,24 @@
                   speed : 300,
                   adaptiveHeight: true,
             })
+            let middleState = false
             let prevSlide = 0
-            // let isDragging = false
+            let isDragging = false
             $('.slider__item').on('click', (e)=>{
-                  // if(isDragging) return
+                  if(isDragging) return
+                  const target = $(e.target)
+                  if(target.parents('.slider__item').hasClass("slick-current")){
+                        slick.toggleClass("is--active")
+                  }else{
+                        slick.addClass("is--active")
+
+                  }
                   const slide = $(e.target).parents('.slider__item')
-
-
                   let index = slide.data("slick-index")
                   if (index <= -2) {
                          slick.slick('slickPrev')
                   }
+                  // slick.addClass("is--active")
                   slick.slick('slickGoTo',index)
                   
             });
@@ -193,22 +214,22 @@
                   if(currentSlide !== prevSlide){
                         slick.find('.slick-current .slider__text-container').addClass("is--show")
                         prevSlide = currentSlide
-                  }else{
+                  }
+                  else{
                         slick.find('.slick-current .slider__text-container').toggleClass("is--show")
-
                   }
                   
             })
-            // slick.on('dragstart', function(){
-            //       isDragging = true
-            // });
-            // slick.on('mouseup', function(){
-            //       setTimeout(() => {
-            //             console.log('mouseup');
-            //             isDragging = false
-            //             slick.find('.slick-current .slider__text-container').addClass("is--show")
-            //       }, 1);
-            // });
+            slick.on('dragstart', function(){
+                  isDragging = true
+            });
+            slick.on('mouseup', function(){
+                  setTimeout(() => {
+                        console.log('mouseup');
+                        isDragging = false
+                        // slick.find('.slick-current .slider__text-container').addClass("is--show")
+                  }, 1);
+            });
       </script>
 </body>
 </html>
