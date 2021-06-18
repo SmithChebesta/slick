@@ -25,6 +25,7 @@
                   width: 90%;
                   max-width: 400px;
                   margin: 0 auto;
+                  /* transition: all 300ms; */
             }
             .slider::before{
                   position: absolute;
@@ -62,7 +63,7 @@
                   opacity : .6;
                   position: relative;
                   transition: transform 300ms;
-                  transform: translateX(-50%);
+                  transform: translateX(-150px);
 
             }
         
@@ -231,5 +232,84 @@
                   }, 1);
             });
       </script>
+  <!-- <script>
+      let slick = $('.slider').slick({
+            variableWidth: true,
+            infinite: true,
+            arrows: false,
+            centerMode: false,
+            swipeToSlide: true,
+            speed : 300,
+            adaptiveHeight: true,
+      })
+      let middleState = false
+      let prevSlide = 0
+      let isDragging = false
+
+     
+      $('.slider__item').on('click', (e)=>{
+            if(isDragging) return
+            const target = $(e.target)
+            
+            if(target.parents('.slider__item').hasClass("slick-current")){
+                  console.log('a');
+                  // slick.slick('slickSetOption', 'centerMode', true);
+                  middleState = !middleState
+                  reInitSlick()
+                  slick.toggleClass("is--active")
+
+            }else{
+                  reInitSlick(true)
+                  slick.addClass("is--active")
+
+            }
+            const slide = $(e.target).parents('.slider__item')
+            let index = slide.data("slick-index")
+            if (index <= -2) {
+                   slick.slick('slickPrev')
+            }
+            // slick.addClass("is--active")
+            slick.slick('slickGoTo',index)
+            
+      });
+      slick.on("beforeChange" , function(_, _, _,nextSlide){
+            if(nextSlide !== prevSlide){
+                  slick.find('.slider__text-container').removeClass("is--show")
+            }
+            
+      })
+      slick.on("afterChange" , function(_, _,currentSlide){
+            if(currentSlide !== prevSlide){
+                  slick.find('.slick-current .slider__text-container').addClass("is--show")
+                  prevSlide = currentSlide
+            }
+            else{
+                  slick.find('.slick-current .slider__text-container').toggleClass("is--show")
+            }
+            
+      })
+      slick.on('dragstart', function(){
+            isDragging = true
+      });
+      slick.on('mouseup', function(){
+            setTimeout(() => {
+                  console.log('mouseup');
+                  isDragging = false
+                  // slick.find('.slick-current .slider__text-container').addClass("is--show")
+            }, 1);
+      });
+      function reInitSlick(state) {
+            slick = slick.slick('slickSetOption', {
+                        variableWidth: true,
+                        infinite: true,
+                        arrows: false,
+                        centerMode: state || middleState,
+                        swipeToSlide: true,
+                        speed : 300,
+                        adaptiveHeight: true,
+                  },true);
+      }
+      
+</script> -->
 </body>
 </html>
